@@ -1,6 +1,6 @@
 # BACKTOFRONT
 
-This is a tool for rapidly prototyping noBackend apps. Write your dream code in node modules, and put them into the 'modules/' directory. Then on the server run:
+This is a tool for rapidly prototyecho noBackend apps. Write your dream code in node modules, and put them into the 'modules/' directory. Then on the server run:
 
     npm install sockjs
     npm install https
@@ -14,5 +14,5 @@ Then, from your client-side app, include the same backtofront.js file. It will a
     backtofront.connect('wss://myserver.com:1234/sock', 'my_secret');
     example.echo('did it work?', function(response) { console.log(response); });
 
-Now look in the 'modules/' directory to find the server-side 'example' module, and see how it exposes the 'ping' method. 
+Now look in the 'modules/' directory to find the server-side 'example' module, and see how it exposes the 'echo' method. 
 
