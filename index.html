@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <p>On the server-side, run 'node backtofront.js [certDir] 4272 my_secret'.</p>
-    <p>Don't forget to accept the <a href="https://localhost:4272/">cert</a></p>
+    <p>On the server-side, run 'node backtofront.js [certDir] 1234 my_secret'.</p>
+    <p>Don't forget to accept the <a href="https://localhost:1234/">cert</a></p>
     <p>Open the console, and if it connects successfully you can do 
       <code>example.echo('did it work?', function(response) { console.log(response); });</code></p>
   </body>
   <script src="backtofront.js"></script>
   <script>
-    backtofront.connect('wss://localhost:4272/sock/websocket', 'my_secret');
+    backtofront.connect('wss://localhost:1234/sock/websocket', 'my_secret');
   </script>
 </html>
