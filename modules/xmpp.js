@@ -1,5 +1,7 @@
 var xmpp = require('simple-xmpp');
 
 for(var i in xmpp) {
-  exports[i] = xmpp[i];
+  if(typeof(xmpp[i])=='function') {
+    exports[i] = xmpp[i];
+  }
 }
