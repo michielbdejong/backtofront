@@ -1,6 +1,6 @@
 # BACKTOFRONT
 
-This is a tool for rapidly prototyecho noBackend apps. Write your dream code in node modules, and put them into the 'modules/' directory. Then on the server run:
+This is a tool for rapidly prototyping noBackend apps. Write your dream code in node modules, and put them into the 'modules/' directory. Then on the server run:
 
     npm install
     node backtofront.js 1234 my_secret
@@ -12,5 +12,9 @@ Then, from your client-side app, include the same backtofront.js file. It will a
     backtofront.connect('wss://myserver.com:1234/sock', 'my_secret');
     example.echo('did it work?', function(response) { console.log(response); });
 
-Now look in the 'modules/' directory to find the server-side 'example' module, and see how it exposes the 'echo' method. 
+Now look in the 'modules/' directory to find the server-side 'xmpp' module, and see how it exposes the simple-xmpp library interface. Backtofront teleports it straight into the frontend.
+
+#WARNING: Be very careful what you expose when running this on a public IP address.
+
+For instance, if you write an app that uses the 'fs' module from nodejs on the client-side, then any user of your app could open the javascript console and issue a simple command to whipe out your server. So please only use this for prototyping, and only run it on localhost unless you really know what you're doing.
 
