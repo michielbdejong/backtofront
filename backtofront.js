@@ -66,14 +66,15 @@ if(typeof(window) != 'undefined') {//client
       argv = require('process').argv;
   console.log(argv);
   var httpsServer = https.createServer({ 
-    key: fs.readFileSync(argv[2]+'/tls.key'), 
-    cert: fs.readFileSync(argv[2]+'/tls.cert'), 
-    ca: fs.readFileSync(argv[2]+'/ca.pem') 
+    key: fs.readFileSync('./tls/tls.key'), 
+    cert: fs.readFileSync('./tls/tls.cert'), 
+    ca: fs.readFileSync('./tls/ca.pem') 
   }, function(req, res) {
     res.writeHead(200);
     res.end('connect a websocket please'); 
   });
-  httpsServer.listen(argv[3]);
+  httpsServer.listen(argv[2]);
+  console.log('listening on port '+argv[3]);
 
   var sockServer = sockjs.createServer();
   sockServer.on('connection', function(conn) {
@@ -96,7 +97,7 @@ if(typeof(window) != 'undefined') {//client
       } catch(e) {
       }
       console.log(obj);
-      if((typeof(obj) == 'object') && (obj.token == argv[4])) {
+      if((typeof(obj) == 'object') && (obj.token == argv[3])) {
         for(var i in obj.args) {
           console.log(obj.args[i]);
           if(typeof(obj.args[i])=='string') {
