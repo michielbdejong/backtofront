@@ -10,7 +10,10 @@ It will automatically detect that you're running it server-side, and open a secu
 Then, from your client-side app, include the same backtofront.js file. It will automatically detect that you're including it client-side, and instantiate a 'backtofront' object in the global scope, so you can do:
 
     backtofront.connect('wss://myserver.com:1234/sock', 'my_secret');
-    example.echo('did it work?', function(response) { console.log(response); });
+
+and have the 'xmpp' object from
+[simple-xmpp](https://github.com/simple-xmpp/node-simple-xmpp/#example)
+available in the global scope as soon as it connects.
 
 Now look in the 'modules/' directory to find the server-side 'xmpp' module, and see how it exposes the simple-xmpp library interface. Backtofront teleports it straight into the frontend.
 
