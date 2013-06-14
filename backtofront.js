@@ -33,7 +33,7 @@ if(typeof(window) != 'undefined') {//client
         if(running[obj.callback]) {
           console.log('running', typeof(running[obj.callback]), obj.args);
           running[obj.callback].apply(null, obj.args);
-          delete running[obj.callback];
+          //delete running[obj.callback];
         } else {
           console.log('not found', running);
         }

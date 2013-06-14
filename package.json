@@ -2,8 +2,8 @@
   "name": "backtofront",
   "version": "0.0.0",
   "dependencies": {
-    "sockjs": "*",
-    "process": "*",
-    "simple-xmpp": "*"
+    "simple-xmpp": "*",
+    "imap": "*",
+    "node-sendgrid": "*"
   }
 }

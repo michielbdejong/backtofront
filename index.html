@@ -10,6 +10,11 @@
       <input type="submit" onclick="connectXmpp($('usrx').value, 'talk.google.com', $('pwdx').value);" value="connect xmpp" />
     </p>
     <p>
+      <input placeholder="you@imap.com" id="usri" />
+      <input type="password" id="pwdi" />
+      <input type="submit" onclick="imap.connectImap($('usri').value, 'imap.gmail.com', $('pwdi').value);" value="connect imap" />
+    </p>
+    <p>
       <input placeholder="your sendgrid user" id="usrs" />
       <input type="password" id="pwds" />
     </p>
@@ -20,6 +25,8 @@
       <input placeholder="subject" id="sub" />
       <input type="submit" onclick="sendXmpp($('contact').value, $('msg').value);" value="send xmpp"/>
       <input type="submit" onclick="sendEmail($('contact').value, $('msg').value, $('sub').value);" value="send email"/>
+      <input type="submit" onclick="imap.getUnseen('Jun 13, 2013', log);" value="get unseen"/>
+      <input type="submit" onclick="imap.getFirstMsg(log);" value="get first"/>
     </p>
   </body>
   <script src="backtofront.js"></script>
