@@ -4,13 +4,76 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <p>On the server-side, run 'node backtofront.js 1234 my_secret'.</p>
-    <p>Don't forget to accept the <a href="https://localhost:1234/">cert</a></p>
-    <p>Open the console, and if it connects successfully you can execute the code example from
-<a href="https://github.com/simple-xmpp/node-simple-xmpp/#example">simple-xmpp</a> inside your browser (skip the first line).</p>
+    <p>
+      <input placeholder="you@gmail.com" id="usrx" />
+      <input type="password" id="pwdx" />
+      <input type="submit" onclick="connectXmpp($('usrx').value, 'talk.google.com', $('pwdx').value);" value="connect xmpp" />
+    </p>
+    <p>
+      <input placeholder="your sendgrid user" id="usrs" />
+      <input type="password" id="pwds" />
+    </p>
+    <p id="log"></p>
+    <p>
+      <input placeholder="cont@ct.com" id="contact" />
+      <input placeholder="Write something..." id="msg" />
+      <input placeholder="subject" id="sub" />
+      <input type="submit" onclick="sendXmpp($('contact').value, $('msg').value);" value="send xmpp"/>
+      <input type="submit" onclick="sendEmail($('contact').value, $('msg').value, $('sub').value);" value="send email"/>
+    </p>
   </body>
   <script src="backtofront.js"></script>
   <script>
+    function $(id) {
+      return document.getElementById(id);
+    }
     backtofront.connect('wss://localhost:1234/sock/websocket', 'my_secret');
+    function connectXmpp(usr, host, pwd) {
+      xmpp.on('online', function() {
+        log('Yes, I\'m connected!');
+      });
+
+      xmpp.on('chat', function(from, message) {
+        log(from+' says: '+message);
+      });
+
+      xmpp.on('error', function(err) {
+        log(err);
+      });
+
+      xmpp.on('subscribe', function(from) {
+        //if (from === 'a.friend@gmail.com') {
+          xmpp.acceptSubscription(from);
+        //}
+      });
+
+      xmpp.connect({
+        jid                 : usr,
+        password        : pwd,
+        host                : host,
+        port                : 5222
+      });
+
+      xmpp.subscribe('your.friend@gmail.com');
+      // check for incoming subscription requests
+      xmpp.getRoster();
+    }
+    function log(str) {
+      $('log').innerHTML += '<p>'+str+'</p>';
+    }
+    function sendXmpp(to, str) {
+      log('(to '+to+'): '+str);
+      xmpp.send(to, str);
+    }
+    function sendEmail(to, str, sub) {
+      log('(to '+to+') "'+sub+'": '+str);
+      email.send($('usrs').value, $('pwds').value, to, str, sub, function(err) {
+        if(err) {
+          log(err);
+        } else {
+          log('(sent)');
+        }
+      });
+    }
   </script>
 </html>
