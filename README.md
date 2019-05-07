@@ -1,5 +1,7 @@
 # BACKTOFRONT
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/michielbdejong/backtofront.svg)](https://greenkeeper.io/)
+
 This is a tool for rapidly prototyping noBackend apps. Write your dream code in node modules, and put them into the 'modules/' directory. Then on the server run:
 
     npm install
